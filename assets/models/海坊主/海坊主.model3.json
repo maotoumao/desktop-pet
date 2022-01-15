@@ -1,0 +1,94 @@
+{
+  "Version": 3,
+  "FileReferences": {
+    "Moc": "海坊主.moc3",
+    "Textures": ["海坊主.1024/texture_00.png"],
+    "Physics": "海坊主.physics3.json",
+    "DisplayInfo": "海坊主.cdi3.json",
+    "Motions": {
+      "Idle": [
+        {
+          "File": "motions/啊对对对.motion3.json"
+        },
+        {
+          "File": "motions/锤你胸口.motion3.json"
+        },
+        {
+          "File": "motions/丢手杖.motion3.json"
+        }
+      ],
+      "awww": [
+        {
+          "File": "motions/憨憨.motion3.json"
+        },
+        {
+          "File": "motions/娇羞.motion3.json"
+        },
+        {
+          "File": "motions/扭屁股.motion3.json"
+        },
+        {
+          "File": "motions/跳.motion3.json"
+        },
+        {
+          "File": "motions/投降.motion3.json"
+        },
+        {
+          "File": "motions/问好.motion3.json"
+        },
+        {
+          "File": "motions/雅蠛蝶.motion3.json"
+        },
+        {
+          "File": "motions/摇尾巴.motion3.json"
+        }
+      ]
+    }
+  },
+  "Groups": [
+    {
+      "Target": "Parameter",
+      "Name": "LipSync",
+      "Ids": ["ParamMouthOpenY"]
+    },
+    {
+      "Target": "Parameter",
+      "Name": "EyeBlink",
+      "Ids": ["ParamEyeLOpen", "ParamEyeROpen"]
+    }
+  ],
+  "HitAreas": [
+    {
+      "Id": "HitArea",
+      "Name": "裤子"
+    },
+    {
+      "Id": "HitAreaWeiba",
+      "Name": "尾巴"
+    },
+    {
+      "Id": "HitAreaRightHand1",
+      "Name": "右手"
+    },
+    {
+      "Id": "HitAreaRightHand2",
+      "Name": "右手"
+    },
+    {
+      "Id": "HitAreaLeftHand1",
+      "Name": "左手"
+    },
+    {
+      "Id": "HitAreaLeftHand2",
+      "Name": "左手"
+    },
+    {
+      "Id": "HitAreaBody",
+      "Name": "身体"
+    },
+    {
+      "Id": "HitAreaHead",
+      "Name": "头"
+    }
+  ]
+}

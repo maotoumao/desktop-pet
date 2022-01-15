@@ -1,0 +1,29 @@
+{
+    "type": "live2d",
+    "transform": {
+        "scale": {
+            "x": 1,
+            "y": 1
+        },
+        "anchor": {
+            "x": 0.5,
+            "y": 0.5
+        }
+    },
+    "hitMap": {
+
+    },
+    "randomIdleMotions": {
+        "interval": [1, 2],
+        "motions": [
+        
+        ]
+    },
+    "rhythms": {
+        "sensitivity": 2,
+        "params": {
+            
+        }
+    }
+    
+}

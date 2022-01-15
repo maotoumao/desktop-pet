@@ -14,6 +14,7 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import { readFile } from 'fs/promises';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
@@ -27,10 +28,41 @@ export default class AppUpdater {
 
 let mainWindow: BrowserWindow | null = null;
 
+const RESOURCES_PATH = app.isPackaged
+  ? path.join(process.resourcesPath, 'assets')
+  : path.join(__dirname, '../../assets');
+
+const getAssetPath = (...paths: string[]): string => {
+  return path.join(RESOURCES_PATH, ...paths);
+};
+
+/**
+ * ! ipc
+ */
+
 ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
   console.log(msgTemplate(arg));
   event.reply('ipc-example', msgTemplate('pong'));
+});
+
+// 获取资源
+ipcMain.on('getAssets', (event, ...args) => {
+  event.returnValue = getAssetPath(...args);
+});
+
+ipcMain.on('setIgnoreMouseEvents', (event, ignore) => {
+  if (mainWindow) {
+    if (ignore) {
+      mainWindow.setIgnoreMouseEvents(true, {
+        forward: true,
+      });
+    } else {
+      mainWindow.setIgnoreMouseEvents(false);
+    }
+    event.returnValue = true;
+  }
+  event.returnValue = false;
 });
 
 if (process.env.NODE_ENV === 'production') {
@@ -45,41 +77,40 @@ if (isDevelopment) {
   require('electron-debug')();
 }
 
-const installExtensions = async () => {
-  const installer = require('electron-devtools-installer');
-  const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions = ['REACT_DEVELOPER_TOOLS'];
-
-  return installer
-    .default(
-      extensions.map((name) => installer[name]),
-      forceDownload
-    )
-    .catch(console.log);
-};
-
 const createWindow = async () => {
-  if (isDevelopment) {
-    await installExtensions();
-  }
-
-  const RESOURCES_PATH = app.isPackaged
-    ? path.join(process.resourcesPath, 'assets')
-    : path.join(__dirname, '../../assets');
-
-  const getAssetPath = (...paths: string[]): string => {
-    return path.join(RESOURCES_PATH, ...paths);
-  };
-
-  mainWindow = new BrowserWindow({
+  const windowOptions: { [k: string]: any } = {
     show: false,
-    width: 1024,
-    height: 728,
+    width: 300,
+    height: 500,
+    alwaysOnTop: true,
+    // frame: false,
+    // transparent: true,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
+      webSecurity: false,
     },
-  });
+  };
+  let config;
+  try {
+    config = JSON.parse(
+      await readFile(getAssetPath('app.json'), {
+        encoding: 'utf-8',
+      })
+    );
+  } catch {
+    config = {};
+  }
+  const windowOptionsFilter = ['width', 'height', 'x', 'y', 'alwaysOnTop'];
+  Object.entries(config?.windowOptions ?? {}).forEach(
+    (entry: [string, any]) => {
+      if (windowOptionsFilter.includes(entry[0])) {
+        windowOptions[entry[0]] = entry[1];
+      }
+    }
+  );
+
+  mainWindow = new BrowserWindow(windowOptions);
 
   mainWindow.loadURL(resolveHtmlPath('index.html'));
 
