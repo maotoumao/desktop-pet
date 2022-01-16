@@ -15,6 +15,7 @@ import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import { readFile } from 'fs/promises';
+import { exec } from 'child_process';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
@@ -40,12 +41,6 @@ const getAssetPath = (...paths: string[]): string => {
  * ! ipc
  */
 
-ipcMain.on('ipc-example', async (event, arg) => {
-  const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
-  console.log(msgTemplate(arg));
-  event.reply('ipc-example', msgTemplate('pong'));
-});
-
 // 获取资源
 ipcMain.on('getAssets', (event, ...args) => {
   event.returnValue = getAssetPath(...args);
@@ -63,6 +58,10 @@ ipcMain.on('setIgnoreMouseEvents', (event, ignore) => {
     event.returnValue = true;
   }
   event.returnValue = false;
+});
+
+ipcMain.on('executeScript', (event, script) => {
+  exec(script);
 });
 
 if (process.env.NODE_ENV === 'production') {

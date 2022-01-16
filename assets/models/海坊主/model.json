@@ -1,29 +1,79 @@
 {
-    "type": "live2d",
-    "transform": {
-        "scale": {
-            "x": 1,
-            "y": 1
-        },
-        "anchor": {
-            "x": 0.5,
-            "y": 0.5
-        }
-    },
-    "hitMap": {
-
-    },
-    "randomIdleMotions": {
-        "interval": [1, 2],
-        "motions": [
-        
-        ]
-    },
-    "rhythms": {
-        "sensitivity": 2,
-        "params": {
-            
-        }
+  "type": "live2d",
+  "entry": "海坊主.model3.json",
+  "transform": {
+    "scale": {
+      "x": 0.45,
+      "y": 0.45
     }
-    
+  },
+  "motions": {
+    "idle": {
+      "interval": [60, 180],
+      "motions": [
+        {
+          "group": "idleGroup",
+          "index": 0
+        },
+        {
+          "group": "idleGroup",
+          "index": 1
+        },
+        {
+          "group": "idleGroup",
+          "index": 2
+        }
+      ]
+    },
+    "start": {
+      "group": "normalGroup",
+      "index": 5
+    },
+    "hitArea": {
+      "裤子": {
+        "group": "normalGroup",
+        "index": 2
+      },
+      "尾巴": {
+        "group": "normalGroup",
+        "index": 7
+      },
+      "右手": {
+        "group": "normalGroup",
+        "index": 5
+      },
+      "左手": {
+        "group": "normalGroup",
+        "index": 4
+      },
+      "身体": {
+        "group": "normalGroup",
+        "index": 1
+      },
+      "头": {
+        "group": "normalGroup",
+        "index": 0
+      }
+    }
+  },
+  "rhythms": {
+    "sensitivity": 2,
+    "params": {}
+  },
+  "actions": {
+    "fileDrop": {
+      "script": "code $0",
+      "motion": {
+        "group": "normalGroup",
+        "index": 3
+      }
+    },
+    "doubleClick": {
+      "script-demo": "D: & cd D:\\Program Files (x86)\\Onmyoji & Launch.exe",
+      "motion": {
+        "group": "normalGroup",
+        "index": 6
+      }
+    }
+  }
 }

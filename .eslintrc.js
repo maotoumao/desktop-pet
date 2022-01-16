@@ -9,6 +9,9 @@ module.exports = {
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/naming-convention': 'off',
     'prefer-destructuring': 'off',
+    'no-underscore-dangle': 'off',
+    'no-plusplus': 'off',
+    'import/prefer-default-export': 'warn',
   },
   parserOptions: {
     ecmaVersion: 2020,

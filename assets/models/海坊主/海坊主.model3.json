@@ -6,7 +6,7 @@
     "Physics": "海坊主.physics3.json",
     "DisplayInfo": "海坊主.cdi3.json",
     "Motions": {
-      "Idle": [
+      "idleGroup": [
         {
           "File": "motions/啊对对对.motion3.json"
         },
@@ -17,7 +17,7 @@
           "File": "motions/丢手杖.motion3.json"
         }
       ],
-      "awww": [
+      "normalGroup": [
         {
           "File": "motions/憨憨.motion3.json"
         },

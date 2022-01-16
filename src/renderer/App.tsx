@@ -1,6 +1,12 @@
+import { EventEmitter } from 'eventemitter3';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import routes from './router';
+
+/**
+ * some global scripts
+ */
+window.Events = new EventEmitter();
 
 export default function App() {
   return (
