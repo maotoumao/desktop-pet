@@ -12,6 +12,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-plusplus': 'off',
     'import/prefer-default-export': 'warn',
+    '@typescript-eslint/no-unused-expressions': 'warn',
   },
   parserOptions: {
     ecmaVersion: 2020,

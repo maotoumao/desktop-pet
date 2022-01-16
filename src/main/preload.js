@@ -12,6 +12,9 @@ contextBridge.exposeInMainWorld('common', {
   executeScript(script) {
     return ipcRenderer.send('executeScript', script);
   },
+  moveWindow(canMove) {
+    return ipcRenderer.send('moveWindow', canMove);
+  },
 });
 
 contextBridge.exposeInMainWorld('fs', fs);

@@ -12,6 +12,7 @@ export default function Main() {
 
   // cached status
   const windowIgnoreEvent = useRef<boolean | null>(null);
+  const dragStatus = useRef<boolean>(false);
 
   // 初始化
   async function initGame() {
@@ -50,6 +51,7 @@ export default function Main() {
     if (!canvasRef.current) {
       return;
     }
+
     const color = pickColor(canvasRef.current, x, y);
     if (!color || color.r + color.g + color.b + color.a === 0) {
       // 透明区域，忽略窗口事件
@@ -82,15 +84,32 @@ export default function Main() {
     e.preventDefault();
   };
 
+  const onCanvasMouseDown = (e: MouseEvent<HTMLCanvasElement>) => {
+    // 右键拖拽
+    if (e.button === 2) {
+      dragStatus.current = true;
+      window.common.moveWindow(true);
+    }
+  };
+
+  const clearDragStatus = () => {
+    if (dragStatus.current) {
+      dragStatus.current = false;
+      window.common.moveWindow(false);
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <canvas
         ref={canvasRef}
         onContextMenu={onContextClick}
+        onMouseDown={onCanvasMouseDown}
+        onMouseLeave={clearDragStatus}
+        onMouseUp={clearDragStatus}
         onDragOver={onCanvasDragOver}
         onDrop={onCanvasDrop}
         onDoubleClick={onDoubleClick}
-        // onMouseDown={onCanvasMouseDown}
         onMouseMove={onCanvasMouseMove}
         className={styles.canvas}
       />

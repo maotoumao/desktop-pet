@@ -11,7 +11,7 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain } from 'electron';
+import { app, BrowserWindow, shell, ipcMain, screen } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import { readFile } from 'fs/promises';
@@ -28,6 +28,10 @@ export default class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
+const windowSize = {
+  w: null,
+  h: null,
+};
 
 const RESOURCES_PATH = app.isPackaged
   ? path.join(process.resourcesPath, 'assets')
@@ -64,6 +68,40 @@ ipcMain.on('executeScript', (event, script) => {
   exec(script);
 });
 
+let moveWindowTimer: NodeJS.Timeout | null = null;
+ipcMain.on('moveWindow', (event, canMove) => {
+  if (!mainWindow) {
+    return;
+  }
+  if (!canMove) {
+    // 清空更新
+    moveWindowTimer && clearInterval(moveWindowTimer);
+    return;
+  }
+  if (canMove && moveWindowTimer) {
+    // 过滤无效行为
+    clearInterval(moveWindowTimer);
+  }
+  const _winPos = mainWindow.getPosition();
+  const winStartPos = {
+    x: _winPos[0],
+    y: _winPos[1],
+  };
+  // 会有窗口放大的bug。。。。
+  const mouseStartPos = screen.getCursorScreenPoint();
+  moveWindowTimer = setInterval(() => {
+    const mouseCurrPos = screen.getCursorScreenPoint();
+    mainWindow?.setBounds(
+      {
+        x: winStartPos.x + mouseCurrPos.x - mouseStartPos.x,
+        y: winStartPos.y + mouseCurrPos.y - mouseStartPos.y,
+        width: windowSize?.w ?? mainWindow?.getBounds()?.width,
+        height: windowSize?.h ?? mainWindow?.getBounds()?.height,
+      },
+      true
+    );
+  }, 32);
+});
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
@@ -108,6 +146,9 @@ const createWindow = async () => {
       }
     }
   );
+
+  windowSize.w = windowOptions.width;
+  windowSize.h = windowOptions.height;
 
   mainWindow = new BrowserWindow(windowOptions);
 

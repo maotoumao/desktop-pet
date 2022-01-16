@@ -11,6 +11,8 @@ declare global {
       setIgnoreMouseEvents: (ignore: boolean) => boolean;
       /** 执行脚本 */
       executeScript: (script: string) => void;
+      /** 移动主窗口 */
+      moveWindow: (canMove: boolean) => void;
     };
     fs: any;
     /** 全局事件 */
