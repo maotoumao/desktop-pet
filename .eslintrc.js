@@ -13,6 +13,7 @@ module.exports = {
     'no-plusplus': 'off',
     'import/prefer-default-export': 'warn',
     '@typescript-eslint/no-unused-expressions': 'warn',
+    'no-restricted-syntax': 'warn',
   },
   parserOptions: {
     ecmaVersion: 2020,

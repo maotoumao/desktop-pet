@@ -120,12 +120,13 @@ const createWindow = async () => {
     width: 300,
     height: 500,
     alwaysOnTop: true,
-    // frame: false,
-    // transparent: true,
+    frame: false,
+    transparent: true,
     icon: getAssetPath('icon.png'),
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       webSecurity: false,
+      devTools: false,
     },
   };
   let config;

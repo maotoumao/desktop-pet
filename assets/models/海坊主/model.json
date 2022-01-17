@@ -56,9 +56,28 @@
       }
     }
   },
-  "rhythms": {
-    "sensitivity": 2,
-    "params": {}
+  "beats": {
+    "params": {
+      "zuoshouxuanzhuan": {
+        "reverse": false,
+        "speed": 1
+      },
+      "youshouxuanzhuan": {
+        "reverse": true,
+        "speed": 1
+      },
+      "weiba": {
+        "reverse": false
+      },
+      "yaodai": {
+        "speed": 0.5
+      },
+      "Param": {
+        "reverse": true
+      },
+      "youtuixuanzhuan": {},
+      "ParamAngleX": {}
+    }
   },
   "actions": {
     "fileDrop": {

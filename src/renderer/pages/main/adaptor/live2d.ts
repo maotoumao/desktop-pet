@@ -22,6 +22,79 @@ function resetParamsToDefault(game: Game, live2dComponent: any) {
   game.ticker.add(updateTween);
 }
 
+const l2dMusicHandler = (() => {
+  const paramTicker: {
+    [k: string]: {
+      updateFn: (args: { deltaTime: number }) => void;
+    };
+  } = {};
+  let direction = 1;
+  let bpm = 0;
+
+  return {
+    setBpm(_bpm: number) {
+      bpm = _bpm;
+    },
+
+    addParamTicker(
+      game: Game,
+      live2dComponent: any,
+      paramId: string,
+      reverse = false,
+      speed = 1
+    ) {
+      const index =
+        live2dComponent.model.internalModel.coreModel.getParameterIndex(
+          paramId
+        );
+      const maxVal =
+        live2dComponent.model.internalModel.coreModel.getParameterMaximumValue(
+          index
+        );
+      const minVal =
+        live2dComponent.model.internalModel.coreModel.getParameterMinimumValue(
+          index
+        );
+
+      paramTicker[paramId] = {
+        updateFn({ deltaTime }: any) {
+          if (live2dComponent.model.internalModel.motionManager.playing) {
+            return;
+          }
+          if (bpm === 0) {
+            resetParamsToDefault(game, live2dComponent);
+            return;
+          }
+          const deltaVal =
+            ((((speed * deltaTime) / 1000) * bpm) / 60) * (maxVal - minVal);
+          let newVal =
+            live2dComponent.model.internalModel.coreModel._model.parameters
+              .values[index] +
+            (reverse ? -1 : 1) * direction * deltaVal;
+          if (newVal > maxVal) {
+            direction = -1;
+            newVal = maxVal - (newVal - maxVal);
+          }
+          if (newVal < minVal) {
+            direction = 1;
+            newVal = minVal * 2 - newVal;
+          }
+          live2dComponent.model.internalModel.coreModel._model.parameters.values[
+            index
+          ] = newVal;
+        },
+      };
+
+      game.ticker.add(paramTicker[paramId].updateFn);
+    },
+
+    removeParamTicker(game: Game, param: string) {
+      game.ticker.remove(param);
+      delete paramTicker[param];
+    },
+  };
+})();
+
 let idleTimer: number | null = null;
 function playIdle(live2d: any, config: any) {
   const interval = config.interval ?? [60, 180];
@@ -133,6 +206,21 @@ export default async function renderLive2dModel(
       playIdle(live2d, config.motions.idle);
     }
 
+    // 初始化音乐响应
+    if (config.beats) {
+      const params = config.beats.params ?? {};
+      const keys = Object.keys(params);
+      for (const key of keys) {
+        l2dMusicHandler.addParamTicker(
+          game,
+          live2d,
+          key,
+          params[key]?.reverse,
+          params[key]?.speed
+        );
+      }
+    }
+
     // 响应事件
     window.Events.on('fileDrop', (e) => {
       const files = e.dataTransfer.files ?? [];
@@ -166,6 +254,10 @@ export default async function renderLive2dModel(
       if (doubleClickAction.script) {
         window.common.executeScript(doubleClickAction.script);
       }
+    });
+
+    window.Events.on('musicBpm', (bpm) => {
+      l2dMusicHandler.setBpm(bpm);
     });
   });
   game.scene.addChild(go);
