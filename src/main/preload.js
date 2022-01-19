@@ -10,10 +10,19 @@ contextBridge.exposeInMainWorld('common', {
     return ipcRenderer.sendSync('setIgnoreMouseEvents', ignore);
   },
   executeScript(script) {
-    return ipcRenderer.send('executeScript', script);
+    ipcRenderer.send('executeScript', script);
   },
   moveWindow(canMove) {
-    return ipcRenderer.send('moveWindow', canMove);
+    ipcRenderer.send('moveWindow', canMove);
+  },
+  loadModel(modelName) {
+    ipcRenderer.send('loadModel', modelName);
+  },
+  getModelList() {
+    return ipcRenderer.sendSync('getModelList');
+  },
+  notification(data) {
+    ipcRenderer.send('notification');
   },
 });
 

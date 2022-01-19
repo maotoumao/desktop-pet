@@ -14,6 +14,10 @@ module.exports = {
     'import/prefer-default-export': 'warn',
     '@typescript-eslint/no-unused-expressions': 'warn',
     'no-restricted-syntax': 'warn',
+    'guard-for-in': 'warn',
+    'no-await-in-loop': 'off',
+    'no-empty': 'warn',
+    'jsx-a11y/click-events-have-key-events': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

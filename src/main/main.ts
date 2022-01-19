@@ -11,12 +11,20 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import { app, BrowserWindow, shell, ipcMain, screen } from 'electron';
+import {
+  app,
+  BrowserWindow,
+  shell,
+  ipcMain,
+  screen,
+  Tray,
+  Menu,
+  Notification,
+} from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
-import { readFile } from 'fs/promises';
+import { readFile, readdir, stat } from 'fs/promises';
 import { exec } from 'child_process';
-import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
 export default class AppUpdater {
@@ -28,10 +36,17 @@ export default class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
+let settingWindow: BrowserWindow | null = null;
+let tray: Tray | null = null;
+const globalStatus: any = {};
+
 const windowSize = {
   w: null,
   h: null,
 };
+
+app.setAppUserModelId(app.name);
+exec('chcp 65001');
 
 const RESOURCES_PATH = app.isPackaged
   ? path.join(process.resourcesPath, 'assets')
@@ -40,6 +55,45 @@ const RESOURCES_PATH = app.isPackaged
 const getAssetPath = (...paths: string[]): string => {
   return path.join(RESOURCES_PATH, ...paths);
 };
+
+// functions
+function loadModel(modelName: string) {
+  if (modelName === globalStatus?.modelName) {
+    return;
+  }
+  tray?.setToolTip(`这里有一只 ${modelName} o(*￣▽￣*)ブ`);
+  const avatar = getAssetPath('models', modelName, 'icon.ico');
+  stat(avatar)
+    .then((file) => {
+      file.isFile() && tray?.setImage(avatar);
+    })
+    .catch(() => {
+      tray?.setImage(getAssetPath('icon.ico'));
+    });
+  mainWindow?.loadURL(
+    resolveHtmlPath('index.html', undefined, {
+      modelName,
+    })
+  );
+  globalStatus.selectedModel = modelName;
+}
+
+async function getModelList() {
+  const modelPath = getAssetPath('models');
+  const dirs = await readdir(modelPath);
+  const models = [];
+  for (const dir of dirs) {
+    try {
+      const isModel = (
+        await stat(getAssetPath('models', dir, 'model.json'))
+      ).isFile();
+      if (isModel) {
+        models.push(dir);
+      }
+    } catch {}
+  }
+  return models;
+}
 
 /**
  * ! ipc
@@ -65,6 +119,10 @@ ipcMain.on('setIgnoreMouseEvents', (event, ignore) => {
 });
 
 ipcMain.on('executeScript', (event, script) => {
+  if (script.startsWith('$DELETE$ ')) {
+    shell.trashItem(script?.slice(9)?.trim());
+    return;
+  }
   exec(script);
 });
 
@@ -102,6 +160,22 @@ ipcMain.on('moveWindow', (event, canMove) => {
     );
   }, 32);
 });
+
+ipcMain.on('loadModel', (event, modelName: string) => {
+  loadModel(modelName);
+});
+
+ipcMain.on('getModelList', async (event) => {
+  event.returnValue = await getModelList();
+});
+
+ipcMain.on('notification', (event, data) => {
+  new Notification({
+    title: data?.title ?? '',
+    body: data?.message ?? '',
+  }).show();
+});
+
 if (process.env.NODE_ENV === 'production') {
   const sourceMapSupport = require('source-map-support');
   sourceMapSupport.install();
@@ -122,7 +196,8 @@ const createWindow = async () => {
     alwaysOnTop: true,
     frame: false,
     transparent: true,
-    icon: getAssetPath('icon.png'),
+    icon: getAssetPath('icon.ico'),
+    skipTaskbar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       webSecurity: false,
@@ -153,7 +228,17 @@ const createWindow = async () => {
 
   mainWindow = new BrowserWindow(windowOptions);
 
-  mainWindow.loadURL(resolveHtmlPath('index.html'));
+  getModelList()
+    .then((models) => {
+      if (models?.length > 0) {
+        loadModel(models[0]);
+      } else {
+        new Notification({
+          title: '没有找到模型~~',
+        }).show();
+      }
+    })
+    .catch();
 
   mainWindow.on('ready-to-show', () => {
     if (!mainWindow) {
@@ -170,9 +255,6 @@ const createWindow = async () => {
     mainWindow = null;
   });
 
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
-
   // Open urls in the user's browser
   mainWindow.webContents.on('new-window', (event, url) => {
     event.preventDefault();
@@ -182,6 +264,85 @@ const createWindow = async () => {
   // Remove this if your app does not use auto updates
   // eslint-disable-next-line
   new AppUpdater();
+};
+
+const createSettingWindow = async () => {
+  settingWindow = new BrowserWindow({
+    show: false,
+    width: 600,
+    height: 600,
+    icon: getAssetPath('icon.ico'),
+    resizable: false,
+    maximizable: false,
+    webPreferences: {
+      preload: path.join(__dirname, 'preload.js'),
+      webSecurity: false,
+      devTools: false,
+    },
+  });
+
+  settingWindow.loadURL(
+    resolveHtmlPath('index.html', '/setting', {
+      selectedModel: globalStatus.selectedModel,
+    })
+  );
+
+  settingWindow.on('ready-to-show', () => {
+    if (!settingWindow) {
+      throw new Error('"settingWindow" is not defined');
+    }
+    settingWindow.menuBarVisible = false;
+    if (process.env.START_MINIMIZED) {
+      settingWindow.minimize();
+    } else {
+      settingWindow.show();
+    }
+  });
+
+  settingWindow.on('closed', () => {
+    settingWindow = null;
+  });
+};
+
+const createTray = () => {
+  tray = new Tray(getAssetPath('icon.ico'));
+  // 双击刷新模型
+  tray.on('double-click', () => {
+    mainWindow?.reload();
+  });
+
+  const ctxMenu = Menu.buildFromTemplate([
+    {
+      label: '切换模型',
+      type: 'normal',
+      click() {
+        if (!settingWindow) {
+          createSettingWindow();
+        }
+      },
+    },
+    {
+      type: 'separator',
+    },
+    {
+      label: '看我看我~',
+      type: 'normal',
+      click() {
+        shell.openExternal('https://space.bilibili.com/12866223');
+      },
+    },
+    {
+      type: 'separator',
+    },
+    {
+      label: '退出',
+      type: 'normal',
+      click() {
+        app.exit(0);
+      },
+    },
+  ]);
+  tray.setContextMenu(ctxMenu);
 };
 
 /**
@@ -199,6 +360,7 @@ app.on('window-all-closed', () => {
 app
   .whenReady()
   .then(() => {
+    createTray();
     createWindow();
     app.on('activate', () => {
       // On macOS it's common to re-create a window in the app when the

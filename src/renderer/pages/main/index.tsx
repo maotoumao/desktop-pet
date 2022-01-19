@@ -6,6 +6,7 @@ import { loadModel } from 'renderer/common/model-loader';
 import styles from './index.module.css';
 import pickColor from './utils/color-picker';
 import adaptor from './adaptor';
+import getQuery from './utils/get-query';
 
 export default function Main() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -15,7 +16,7 @@ export default function Main() {
   const dragStatus = useRef<boolean>(false);
 
   // 初始化
-  async function initGame() {
+  async function initGame(modelName: string) {
     if (!canvasRef.current) {
       return;
     }
@@ -34,12 +35,13 @@ export default function Main() {
         }),
       ],
     });
-    adaptor(game, '海坊主');
+    adaptor(game, modelName);
   }
 
   useEffect(() => {
-    // 初始化live2d
-    initGame();
+    // 初始化模型
+    const modelName = getQuery('modelName') ?? '';
+    initGame(modelName);
   }, []);
 
   /**

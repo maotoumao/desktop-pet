@@ -1,4 +1,5 @@
 import Main from './pages/main';
+import Setting from './pages/setting';
 
 interface IRoute {
   path: string;
@@ -11,6 +12,11 @@ const routes: IRoute[] = [
     path: '/',
     element: <Main />,
     key: 'main',
+  },
+  {
+    path: '/setting',
+    element: <Setting />,
+    key: 'setting',
   },
 ];
 

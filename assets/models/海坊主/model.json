@@ -88,7 +88,7 @@
       }
     },
     "doubleClick": {
-      "script-demo": "D: & cd D:\\Program Files (x86)\\Onmyoji & Launch.exe",
+      "script": "D: & cd D:\\Program Files (x86)\\Onmyoji & Launch.exe",
       "motion": {
         "group": "normalGroup",
         "index": 6

@@ -1,5 +1,5 @@
 {
-  "name": "桌面小宠物",
+  "name": "desktop-pet",
   "version": "1.0.0",
   "description": "在桌面上养小宠物叭",
   "main": "./dist/main/main.js",
@@ -14,7 +14,7 @@
     "postinstall": "npm run electron-rebuild && npm run link-modules"
   },
   "dependencies": {
-    "fs": "require(\"fs\")"
+    "fs": ""
   },
   "license": "MIT"
 }

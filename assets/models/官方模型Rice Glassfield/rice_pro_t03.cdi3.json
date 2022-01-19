@@ -1,0 +1,697 @@
+{
+	"Version": 3,
+	"Parameters": [
+		{
+			"Id": "ParamAngleX",
+			"GroupId": "ParamGroupFace",
+			"Name": "角度 X"
+		},
+		{
+			"Id": "ParamAngleZ",
+			"GroupId": "ParamGroupFace",
+			"Name": "角度 Z"
+		},
+		{
+			"Id": "ParamEyeLOpen",
+			"GroupId": "ParamGroupEyes",
+			"Name": "左眼 开闭"
+		},
+		{
+			"Id": "ParamEyeROpen",
+			"GroupId": "ParamGroupEyes",
+			"Name": "右眼 开闭"
+		},
+		{
+			"Id": "ParamEyeBallX",
+			"GroupId": "ParamGroupEyes",
+			"Name": "眼珠 X"
+		},
+		{
+			"Id": "ParamEyeBallY",
+			"GroupId": "ParamGroupEyes",
+			"Name": "眼珠 Y"
+		},
+		{
+			"Id": "ParamBodyAngleX",
+			"GroupId": "ParamGroupBody",
+			"Name": "身体的旋转 X"
+		},
+		{
+			"Id": "ParamBodyAngleY",
+			"GroupId": "ParamGroupBody",
+			"Name": "身体的旋转 Y"
+		},
+		{
+			"Id": "ParamBodyAngleZ",
+			"GroupId": "ParamGroupBody",
+			"Name": "身体的旋转 Z"
+		},
+		{
+			"Id": "ParamShoulderR",
+			"GroupId": "ParamGroupBody",
+			"Name": "右肩"
+		},
+		{
+			"Id": "ParamShoulderL",
+			"GroupId": "ParamGroupBody",
+			"Name": "左肩"
+		},
+		{
+			"Id": "ParamLegKnee",
+			"GroupId": "ParamGroupBody",
+			"Name": "屈伸"
+		},
+		{
+			"Id": "ParamLegR",
+			"GroupId": "ParamGroupBody",
+			"Name": "右脚的位置"
+		},
+		{
+			"Id": "ParamLegRUpDw",
+			"GroupId": "ParamGroupBody",
+			"Name": "右脚的上下"
+		},
+		{
+			"Id": "ParamAllZ",
+			"GroupId": "ParamGroupBody",
+			"Name": "整体 Z"
+		},
+		{
+			"Id": "ParamArmR01",
+			"GroupId": "ParamGroupArms",
+			"Name": "右上臂"
+		},
+		{
+			"Id": "ParamArmR01Y",
+			"GroupId": "ParamGroupArms",
+			"Name": "右上臂 Y"
+		},
+		{
+			"Id": "ParamArmR02",
+			"GroupId": "ParamGroupArms",
+			"Name": "右前臂"
+		},
+		{
+			"Id": "ParamArmR02Y",
+			"GroupId": "ParamGroupArms",
+			"Name": "右前臂 Y"
+		},
+		{
+			"Id": "ParamArmR03",
+			"GroupId": "ParamGroupArms",
+			"Name": "右手"
+		},
+		{
+			"Id": "ParamArmL01",
+			"GroupId": "ParamGroupArms",
+			"Name": "左上臂"
+		},
+		{
+			"Id": "ParamArmL02",
+			"GroupId": "ParamGroupArms",
+			"Name": "左前臂"
+		},
+		{
+			"Id": "ParamArmL03",
+			"GroupId": "ParamGroupArms",
+			"Name": "左手"
+		},
+		{
+			"Id": "ParamArmChange",
+			"GroupId": "ParamGroupArms",
+			"Name": "手臂 切换"
+		},
+		{
+			"Id": "ParamBookPage",
+			"GroupId": "ParamGroupArms",
+			"Name": "书页"
+		},
+		{
+			"Id": "ParamFlameOn",
+			"GroupId": "ParamGroupFlame",
+			"Name": "火焰 显示"
+		},
+		{
+			"Id": "ParamFlame",
+			"GroupId": "ParamGroupFlame",
+			"Name": "火焰"
+		},
+		{
+			"Id": "ParamFlameShaking",
+			"GroupId": "ParamGroupFlame",
+			"Name": "火焰的摇动"
+		},
+		{
+			"Id": "ParamFlameX",
+			"GroupId": "ParamGroupFlame",
+			"Name": "火焰的位置 X"
+		},
+		{
+			"Id": "ParamFlameY",
+			"GroupId": "ParamGroupFlame",
+			"Name": "火焰的位置 Y"
+		},
+		{
+			"Id": "ParamCharge01On",
+			"GroupId": "ParamGroupEffectsA",
+			"Name": "聚合光波 显示"
+		},
+		{
+			"Id": "ParamCharge01",
+			"GroupId": "ParamGroupEffectsA",
+			"Name": "聚合光波"
+		},
+		{
+			"Id": "ParamHandLightAOn",
+			"GroupId": "ParamGroupEffectsA",
+			"Name": "手 光效A的显示"
+		},
+		{
+			"Id": "ParamHandLightASize",
+			"GroupId": "ParamGroupEffectsA",
+			"Name": "手 光效A的缩放"
+		},
+		{
+			"Id": "ParamMagicPowersA",
+			"GroupId": "ParamGroupEffectsA",
+			"Name": "波动A"
+		},
+		{
+			"Id": "ParamMagicAOn",
+			"GroupId": "ParamGroupEffectsA",
+			"Name": "魔法阵A的显示"
+		},
+		{
+			"Id": "ParamMagicARotation",
+			"GroupId": "ParamGroupEffectsA",
+			"Name": "魔法阵A的旋转"
+		},
+		{
+			"Id": "ParamMagicALight",
+			"GroupId": "ParamGroupEffectsA",
+			"Name": "魔法阵A 光"
+		},
+		{
+			"Id": "ParamEffectAX",
+			"GroupId": "ParamGroupEffectsA",
+			"Name": "光效A的位置 X"
+		},
+		{
+			"Id": "ParamEffectAY",
+			"GroupId": "ParamGroupEffectsA",
+			"Name": "光效A的位置 Y"
+		},
+		{
+			"Id": "ParamHandLightBOn",
+			"GroupId": "ParamGroupEffectsB",
+			"Name": "手 光效B的显示"
+		},
+		{
+			"Id": "ParamHandLightBSize",
+			"GroupId": "ParamGroupEffectsB",
+			"Name": "手 光效B的缩放"
+		},
+		{
+			"Id": "ParamMagicBOn",
+			"GroupId": "ParamGroupEffectsB",
+			"Name": "魔法阵B的显示"
+		},
+		{
+			"Id": "ParamMagicBRotation",
+			"GroupId": "ParamGroupEffectsB",
+			"Name": "魔法阵B的旋转"
+		},
+		{
+			"Id": "ParamMagicBMove",
+			"GroupId": "ParamGroupEffectsB",
+			"Name": "魔法阵B的移动"
+		},
+		{
+			"Id": "ParamMagicBX",
+			"GroupId": "ParamGroupEffectsB",
+			"Name": "魔法阵B的角度 X"
+		},
+		{
+			"Id": "ParamMagicPowersBOn",
+			"GroupId": "ParamGroupEffectsB",
+			"Name": "波动B的显示"
+		},
+		{
+			"Id": "ParamMagicPowersBSize",
+			"GroupId": "ParamGroupEffectsB",
+			"Name": "波动B的缩放"
+		},
+		{
+			"Id": "ParamMagicPowersBThicknesses",
+			"GroupId": "ParamGroupEffectsB",
+			"Name": "波动B的宽度"
+		},
+		{
+			"Id": "ParamEffectBX",
+			"GroupId": "ParamGroupEffectsB",
+			"Name": "光效B的位置 X"
+		},
+		{
+			"Id": "ParamEffectBY",
+			"GroupId": "ParamGroupEffectsB",
+			"Name": "光效B的位置 Y"
+		},
+		{
+			"Id": "ParamHeadRibbon",
+			"GroupId": "ParamGroupSwing",
+			"Name": "蝴蝶结的摇动"
+		},
+		{
+			"Id": "ParamBustRibbon01",
+			"GroupId": "ParamGroupSwing",
+			"Name": "领结的摇动01"
+		},
+		{
+			"Id": "ParamBustRibbon02",
+			"GroupId": "ParamGroupSwing",
+			"Name": "领结的摇动02"
+		},
+		{
+			"Id": "ParamWaistRibbon01",
+			"GroupId": "ParamGroupSwing",
+			"Name": "腰带的摇动01"
+		},
+		{
+			"Id": "ParamWaistRibbon02",
+			"GroupId": "ParamGroupSwing",
+			"Name": "腰带的摇动02"
+		},
+		{
+			"Id": "ParamSkirt",
+			"GroupId": "ParamGroupSwing",
+			"Name": "裙子的飘动"
+		},
+		{
+			"Id": "ParamSkirtX",
+			"GroupId": "ParamGroupSwing",
+			"Name": "裙子的摇动 X"
+		},
+		{
+			"Id": "ParamSkirtY",
+			"GroupId": "ParamGroupSwing",
+			"Name": "裙子的摇动 Y"
+		},
+		{
+			"Id": "ParamHairFront01",
+			"GroupId": "ParamGroupHairFront",
+			"Name": "头发摇动 前01"
+		},
+		{
+			"Id": "ParamHairFront02",
+			"GroupId": "ParamGroupHairFront",
+			"Name": "头发摇动 前02"
+		},
+		{
+			"Id": "Param_Angle_Rotation_1_ArtMesh67",
+			"GroupId": "ParamGroupHairSideR",
+			"Name": "[0]右侧发"
+		},
+		{
+			"Id": "Param_Angle_Rotation_2_ArtMesh67",
+			"GroupId": "ParamGroupHairSideR",
+			"Name": "[1]右侧发"
+		},
+		{
+			"Id": "Param_Angle_Rotation_3_ArtMesh67",
+			"GroupId": "ParamGroupHairSideR",
+			"Name": "[2]右侧发"
+		},
+		{
+			"Id": "Param_Angle_Rotation_4_ArtMesh67",
+			"GroupId": "ParamGroupHairSideR",
+			"Name": "[3]右侧发"
+		},
+		{
+			"Id": "Param_Angle_Rotation_5_ArtMesh67",
+			"GroupId": "ParamGroupHairSideR",
+			"Name": "[4]右侧发"
+		},
+		{
+			"Id": "Param_Angle_Rotation_1_ArtMesh20",
+			"GroupId": "ParamGroupHairSideL",
+			"Name": "[0]左侧发"
+		},
+		{
+			"Id": "Param_Angle_Rotation_2_ArtMesh20",
+			"GroupId": "ParamGroupHairSideL",
+			"Name": "[1]左侧发"
+		},
+		{
+			"Id": "Param_Angle_Rotation_3_ArtMesh20",
+			"GroupId": "ParamGroupHairSideL",
+			"Name": "[2]左侧发"
+		},
+		{
+			"Id": "Param_Angle_Rotation_4_ArtMesh20",
+			"GroupId": "ParamGroupHairSideL",
+			"Name": "[3]左侧发"
+		},
+		{
+			"Id": "Param_Angle_Rotation_5_ArtMesh20",
+			"GroupId": "ParamGroupHairSideL",
+			"Name": "[4]左侧发"
+		},
+		{
+			"Id": "Param_Angle_Rotation_1_ArtMesh82",
+			"GroupId": "ParamGroupHairBackA",
+			"Name": "[0]后发A"
+		},
+		{
+			"Id": "Param_Angle_Rotation_2_ArtMesh82",
+			"GroupId": "ParamGroupHairBackA",
+			"Name": "[1]后发A"
+		},
+		{
+			"Id": "Param_Angle_Rotation_3_ArtMesh82",
+			"GroupId": "ParamGroupHairBackA",
+			"Name": "[2]后发A"
+		},
+		{
+			"Id": "Param_Angle_Rotation_4_ArtMesh82",
+			"GroupId": "ParamGroupHairBackA",
+			"Name": "[3]后发A"
+		},
+		{
+			"Id": "Param_Angle_Rotation_5_ArtMesh82",
+			"GroupId": "ParamGroupHairBackA",
+			"Name": "[4]后发A"
+		},
+		{
+			"Id": "Param_Angle_Rotation_6_ArtMesh82",
+			"GroupId": "ParamGroupHairBackA",
+			"Name": "[5]后发A"
+		},
+		{
+			"Id": "Param_Angle_Rotation_7_ArtMesh82",
+			"GroupId": "ParamGroupHairBackA",
+			"Name": "[6]后发A"
+		},
+		{
+			"Id": "Param_Angle_Rotation_1_ArtMesh81",
+			"GroupId": "ParamGroupHairBackB",
+			"Name": "[0]后发B"
+		},
+		{
+			"Id": "Param_Angle_Rotation_2_ArtMesh81",
+			"GroupId": "ParamGroupHairBackB",
+			"Name": "[1]后发B"
+		},
+		{
+			"Id": "Param_Angle_Rotation_3_ArtMesh81",
+			"GroupId": "ParamGroupHairBackB",
+			"Name": "[2]后发B"
+		},
+		{
+			"Id": "Param_Angle_Rotation_4_ArtMesh81",
+			"GroupId": "ParamGroupHairBackB",
+			"Name": "[3]后发B"
+		},
+		{
+			"Id": "Param_Angle_Rotation_5_ArtMesh81",
+			"GroupId": "ParamGroupHairBackB",
+			"Name": "[4]后发B"
+		},
+		{
+			"Id": "Param_Angle_Rotation_6_ArtMesh81",
+			"GroupId": "ParamGroupHairBackB",
+			"Name": "[5]后发B"
+		},
+		{
+			"Id": "Param_Angle_Rotation_7_ArtMesh81",
+			"GroupId": "ParamGroupHairBackB",
+			"Name": "[6]后发B"
+		},
+		{
+			"Id": "Param_Angle_Rotation_8_ArtMesh81",
+			"GroupId": "ParamGroupHairBackB",
+			"Name": "[7]后发B"
+		},
+		{
+			"Id": "Param_Angle_Rotation_9_ArtMesh81",
+			"GroupId": "ParamGroupHairBackB",
+			"Name": "[8]后发B"
+		},
+		{
+			"Id": "Param_Angle_Rotation_1_ArtMesh80",
+			"GroupId": "ParamGroupHairBackC",
+			"Name": "[0]后发C"
+		},
+		{
+			"Id": "Param_Angle_Rotation_2_ArtMesh80",
+			"GroupId": "ParamGroupHairBackC",
+			"Name": "[1]后发C"
+		},
+		{
+			"Id": "Param_Angle_Rotation_3_ArtMesh80",
+			"GroupId": "ParamGroupHairBackC",
+			"Name": "[2]后发C"
+		},
+		{
+			"Id": "Param_Angle_Rotation_4_ArtMesh80",
+			"GroupId": "ParamGroupHairBackC",
+			"Name": "[3]后发C"
+		},
+		{
+			"Id": "Param_Angle_Rotation_5_ArtMesh80",
+			"GroupId": "ParamGroupHairBackC",
+			"Name": "[4]后发C"
+		},
+		{
+			"Id": "Param_Angle_Rotation_6_ArtMesh80",
+			"GroupId": "ParamGroupHairBackC",
+			"Name": "[5]后发C"
+		},
+		{
+			"Id": "Param_Angle_Rotation_7_ArtMesh80",
+			"GroupId": "ParamGroupHairBackC",
+			"Name": "[6]后发C"
+		},
+		{
+			"Id": "Param_Angle_Rotation_8_ArtMesh80",
+			"GroupId": "ParamGroupHairBackC",
+			"Name": "[7]后发C"
+		},
+		{
+			"Id": "Param_Angle_Rotation_9_ArtMesh80",
+			"GroupId": "ParamGroupHairBackC",
+			"Name": "[8]后发C"
+		}
+	],
+	"ParameterGroups": [
+		{
+			"Id": "ParamGroupFace",
+			"GroupId": "",
+			"Name": "脸"
+		},
+		{
+			"Id": "ParamGroupEyes",
+			"GroupId": "",
+			"Name": "眼睛"
+		},
+		{
+			"Id": "ParamGroupBody",
+			"GroupId": "",
+			"Name": "身体"
+		},
+		{
+			"Id": "ParamGroupArms",
+			"GroupId": "",
+			"Name": "手臂"
+		},
+		{
+			"Id": "ParamGroupFlame",
+			"GroupId": "",
+			"Name": "火焰"
+		},
+		{
+			"Id": "ParamGroupEffectsA",
+			"GroupId": "",
+			"Name": "光效A"
+		},
+		{
+			"Id": "ParamGroupEffectsB",
+			"GroupId": "",
+			"Name": "光效B"
+		},
+		{
+			"Id": "ParamGroupSwing",
+			"GroupId": "",
+			"Name": "摇动"
+		},
+		{
+			"Id": "ParamGroupHairFront",
+			"GroupId": "",
+			"Name": "前发"
+		},
+		{
+			"Id": "ParamGroupHairSideR",
+			"GroupId": "",
+			"Name": "右侧发"
+		},
+		{
+			"Id": "ParamGroupHairSideL",
+			"GroupId": "",
+			"Name": "左侧发"
+		},
+		{
+			"Id": "ParamGroupHairBackA",
+			"GroupId": "",
+			"Name": "后发A"
+		},
+		{
+			"Id": "ParamGroupHairBackB",
+			"GroupId": "",
+			"Name": "后发B"
+		},
+		{
+			"Id": "ParamGroupHairBackC",
+			"GroupId": "",
+			"Name": "后发C"
+		}
+	],
+	"Parts": [
+		{
+			"Id": "PartCore",
+			"Name": "Core"
+		},
+		{
+			"Id": "PartFlame",
+			"Name": "火焰"
+		},
+		{
+			"Id": "PartMagicPowersB",
+			"Name": "波动B"
+		},
+		{
+			"Id": "PartMagicB",
+			"Name": "魔法阵B"
+		},
+		{
+			"Id": "PartMagicPowersA",
+			"Name": "波动A"
+		},
+		{
+			"Id": "PartMagicA",
+			"Name": "魔法阵A"
+		},
+		{
+			"Id": "PartHat",
+			"Name": "帽子"
+		},
+		{
+			"Id": "PartHair",
+			"Name": "头发"
+		},
+		{
+			"Id": "PartBrow",
+			"Name": "眉毛"
+		},
+		{
+			"Id": "PartEyeL",
+			"Name": "左眼"
+		},
+		{
+			"Id": "PartEyeR",
+			"Name": "右眼"
+		},
+		{
+			"Id": "PartFace",
+			"Name": "脸"
+		},
+		{
+			"Id": "PartArmR02",
+			"Name": "右臂 差分"
+		},
+		{
+			"Id": "PartArmR01",
+			"Name": "右手臂"
+		},
+		{
+			"Id": "PartBody",
+			"Name": "身体"
+		},
+		{
+			"Id": "PartLegR",
+			"Name": "右脚"
+		},
+		{
+			"Id": "PartLegL",
+			"Name": "左脚"
+		},
+		{
+			"Id": "PartArmL",
+			"Name": "左手臂"
+		},
+		{
+			"Id": "PartHairBack",
+			"Name": "后发"
+		},
+		{
+			"Id": "PartWaveSave",
+			"Name": "聚合光波"
+		},
+		{
+			"Id": "ArtMesh20_Skinning",
+			"Name": "左侧发(蒙皮)"
+		},
+		{
+			"Id": "Part20",
+			"Name": "左侧发(旋转)"
+		},
+		{
+			"Id": "ArtMesh67_Skinning",
+			"Name": "右侧发(蒙皮)"
+		},
+		{
+			"Id": "Part19",
+			"Name": "右侧发(旋转)"
+		},
+		{
+			"Id": "ArtMesh80_Skinning",
+			"Name": "后发C(蒙皮)"
+		},
+		{
+			"Id": "Part17",
+			"Name": "后发(旋转)"
+		},
+		{
+			"Id": "ArtMesh81_Skinning",
+			"Name": "后发B(蒙皮)"
+		},
+		{
+			"Id": "Part18",
+			"Name": "后发B(旋转)"
+		},
+		{
+			"Id": "ArtMesh82_Skinning",
+			"Name": "后发A(蒙皮)"
+		},
+		{
+			"Id": "Part16",
+			"Name": "后发A(旋转)"
+		}
+	],
+	"CombinedParameters": [
+		[
+			"ParamFlameX",
+			"ParamFlameY"
+		],
+		[
+			"ParamEffectAX",
+			"ParamEffectAY"
+		],
+		[
+			"ParamEffectBX",
+			"ParamEffectBY"
+		],
+		[
+			"ParamHairFront01",
+			"ParamHairFront02"
+		]
+	]
+}

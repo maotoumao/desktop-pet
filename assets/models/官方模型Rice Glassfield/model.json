@@ -1,0 +1,47 @@
+{
+    "type": "live2d",
+    "entry": "rice_pro_t03.model3.json",
+    "transform": {
+      "scale": {
+        "x": 0.1,
+        "y": 0.1
+      }
+    },
+    "motions": {
+      "start": {
+        "group": "FlickLeft",
+        "index": 0
+      },
+      "hitArea": {
+        "身体": {
+          "group": "Tap@Body",
+          "index": 0
+        }
+      }
+    },
+    "beats": {
+      "params": {
+        "ParamLegRUpDw": {
+        },
+        "ParamArmL02": {},
+        "ParamArmL03": {}
+      }
+    },
+    "actions": {
+      "fileDrop": {
+        "script": "$DELETE$ $0",
+        "motion": {
+          "group": "FlickUp",
+          "index": 0
+        }
+      },
+      "doubleClick": {
+        "script-demo": "D: & cd D:\\Program Files (x86)\\Onmyoji & Launch.exe",
+        "motion": {
+          "group": "FlickUp",
+          "index": 0
+        }
+      }
+    }
+  }
+  

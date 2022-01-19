@@ -13,6 +13,12 @@ declare global {
       executeScript: (script: string) => void;
       /** 移动主窗口 */
       moveWindow: (canMove: boolean) => void;
+      /** 加载模型 */
+      loadModel: (modelName: string) => void;
+      // 获取模型列表
+      getModelList: () => string[];
+      /** 窗口提示 */
+      notification: (data: { title?: string; message?: string }) => void;
     };
     fs: any;
     /** 全局事件 */

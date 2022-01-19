@@ -10,9 +10,16 @@ const adaptMap = {
 };
 
 export default async function (game: Game, modelName: string) {
-  const modelInfo = await loadModel(modelName);
-  if (modelInfo?.config?.beats) {
-    beatsDetector();
+  try {
+    const modelInfo = await loadModel(modelName);
+    if (modelInfo?.config?.beats) {
+      beatsDetector();
+    }
+    adaptMap[modelInfo.config.type](game, modelInfo);
+  } catch (e: any) {
+    window.common.notification({
+      title: '模型加载出错啦!',
+      message: e?.message ?? '',
+    });
   }
-  adaptMap[modelInfo.config.type](game, modelInfo);
 }
