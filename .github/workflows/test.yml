@@ -15,5 +15,5 @@ jobs:
       - uses: actions/setup-node@v3
         with:
             node-version: 18
-      - run: echo (node -p -e '`VERSION=${require(\"./package.json\").version}`') >> $Env:GITHUB_ENV
+      - run: echo (node -p -e '`VERSION=${require("./package.json").version}`') >> $Env:GITHUB_ENV
       - run: echo ${{ env.VERSION }}
