@@ -16,4 +16,4 @@ jobs:
         with:
             node-version: 18
       - run: echo (node -p -e '`VERSION=${require("./package.json").version}`') >> $Env:GITHUB_ENV
-      - run: echo ${{ env.VERSION }}
+      - run: echo (node -p -e '`VERSION=${require("./package.json").version}`')
